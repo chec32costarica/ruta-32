@@ -235,3 +235,8 @@
 .ini {
   font-weight: bold;
 }
+.icon {
+  width: 20%;
+  height: auto;
+  margin-top: 15px;
+}
