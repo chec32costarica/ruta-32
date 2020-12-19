@@ -1,10 +1,46 @@
 
-var jsonURL = "https://script.googleusercontent.com/macros/echo?user_content_key=UjqtSP63dOxSztDgIKeB6PCOfJy_Z_IWsj2D3cVZzxQfKVqFK_G9FHSn6XKbvnFkhybfdU4pXR6sgpu41D-Oo3DOKUpHrS-Cm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnOo_C6_HSUSIO_qGLR9ABKdtqA_vV92x1Ywdt-HyQ9A0QUwqBIx8gMDDXO6S5_QE7y0-6IqMJGIf&lib=MQnTVIASTnGfijcLnqggJE8qeSj0euZbs";
-
-
-fetch(jsonURL)
+fetch("datos.json")
 .then(response => response.json())
 .then(leon => {
-    console.log(leon[0].No)
-    document.querySelector("#leon").innerHTML = leon[0]
-})
+    console.log(leon);
+    //document.querySelector("#leon").innerHTML = leon[2].inicio
+
+    var col = [];
+        for (var i = 0; i < leon.length; i++) {
+            for (var key in leon[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+
+        // Create a table.
+        var table = document.createElement("table");
+
+        // Create table header row using the extracted headers above.
+        var tr = table.insertRow(-1);                   // table row.
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // table header.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+        // add json data to the table as rows.
+        for (var i = 0; i < leon.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = leon[i][col[j]];
+            }
+        }
+
+        // Now, add the newly created table with json data, to a container.
+        var divShowData = document.getElementById('table_puentes');
+        divShowData.innerHTML = "";
+        divShowData.appendChild(table);
+        
+    }
+)

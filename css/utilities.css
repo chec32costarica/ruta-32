@@ -236,7 +236,11 @@
   font-weight: bold;
 }
 .icon {
-  width: 20%;
+  width: 10%;
   height: auto;
   margin-top: 15px;
+}
+table{
+  border-spacing: 15px;
+  text-align: center;
 }
